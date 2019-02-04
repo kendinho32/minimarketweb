@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { appRoutingProviders, routing } from './app.routing';
 
@@ -8,6 +9,7 @@ import { IndexComponent } from './index/index.component';
 import { HeaderComponent } from './header/header.component';
 import { SliderComponent } from './slider/slider.component';
 import { FooterComponent } from './footer/footer.component';
+import { CategoriaService } from './services/categoria.service';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    HttpClientModule
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, CategoriaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
