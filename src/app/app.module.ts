@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { appRoutingProviders, routing } from './app.routing';
@@ -22,7 +23,9 @@ import { CategoriaService } from './services/categoria.service';
   imports: [
     BrowserModule,
     routing,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [appRoutingProviders, CategoriaService],
   bootstrap: [AppComponent]

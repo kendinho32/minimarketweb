@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CategoriaService {
@@ -12,6 +13,6 @@ export class CategoriaService {
   }
 
   getAllCategories(): Observable<any> {
-    return this._http.get('http://localhost:9080/api/auth/get-all-categories', {headers: this.headers});
+    return this._http.get(environment.apiBase + 'auth/get-all-categories', {headers: this.headers});
   }
 }
