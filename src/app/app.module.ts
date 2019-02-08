@@ -11,6 +11,9 @@ import { HeaderComponent } from './header/header.component';
 import { SliderComponent } from './slider/slider.component';
 import { FooterComponent } from './footer/footer.component';
 import { CategoriaService } from './services/categoria.service';
+import { LoginComponent } from './login/login.component';
+import { ContactComponent } from './contact/contact.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { CategoriaService } from './services/categoria.service';
     IndexComponent,
     HeaderComponent,
     SliderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    ContactComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
