@@ -1,4 +1,3 @@
-import { Role } from './role';
 import { Phone } from './phone';
 
 export class UserModel {
@@ -7,8 +6,8 @@ export class UserModel {
     public name: string,
     public email: string,
     public password: string,
-    public phone: Phone[],
-    public roles: Role,
+    public phones: Phone[],
+    public role: string,
     public token: string,
     public created: string,
     public modified: string,
