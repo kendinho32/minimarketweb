@@ -1,22 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
+import { UtilService } from '../services/util.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [ProductoService]
+  providers: [ProductoService, UtilService]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, DoCheck {
 
   public response;
   public product;
+  public identity;
   public searchProduct: string;
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private productoService: ProductoService,
+             private utilService: UtilService) { }
 
-  ngOnInit() {
+  /**
+   * Metodo que se dispara cuando ocurre un cambio en la app
+   */
+  ngDoCheck(): void {
+    this.identity = this.utilService.getIdentity();
   }
+
+  ngOnInit() {}
 
   buscarProducto(event) {
     if (event.key === 'Enter') {
@@ -33,6 +42,11 @@ export class HeaderComponent implements OnInit {
             }
         );
     }
+  }
+
+  logout() {
+      localStorage.removeItem('identity'); // Eliminamos el objeto de sesion
+      this.identity = null;
   }
 
 }

@@ -18,4 +18,8 @@ export class LoginService {
   registerUser(user: UserModel): Observable<any> {
     return this._http.post(environment.apiBase + 'auth/register', user, {headers: this.headers});
   }
+
+  loginUser(user: UserModel): Observable<any> {
+    return this._http.post(environment.apiBase + 'auth/loginUser', user, {headers: this.headers});
+  }
 }

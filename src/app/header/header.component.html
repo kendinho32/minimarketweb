@@ -29,7 +29,7 @@
 					<div class="col-md-4 clearfix">
 						<div class="companyinfo">
 							<h2><span>Mini Market</span>-Dulce Alegria</h2>
-							<p>El mini market que lo pone todo a tu alcance</p>
+                            <p>El mini market que lo pone todo a tu alcance</p> <h3 *ngIf="identity"><span>Bienvenido </span>{{identity.name}}</h3>
 						</div>
 					</div>
 					<div class="col-md-8 clearfix">
@@ -38,7 +38,8 @@
                                 <li><a [routerLink]="['/home']" [routerLinkActive]="['active']"><i class="fa fa-star"></i> Home</a></li>
 								<li><a [routerLink]="['/contact']" [routerLinkActive]="['active']"><i class="fa fa-crosshairs"></i> Contacto</a></li>
 								<li><a [routerLink]="['/cart']" [routerLinkActive]="['active']"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a [routerLink]="['/login']" [routerLinkActive]="['active']"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a *ngIf="!identity" [routerLink]="['/login']" [routerLinkActive]="['active']"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a *ngIf="identity" (click)="logout()" style="cursor: pointer;" [routerLinkActive]="['active']"><i class="fa fa-lock"></i> Cerrar Sesión</a></li>
 							</ul>
 						</div>
 					</div>
