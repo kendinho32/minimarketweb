@@ -16,15 +16,10 @@ export class LoginComponent implements OnInit {
 
  public user: UserModel;
  public role: Role;
-
  public arrPhone: Phone[];
-
  public phone: Phone;
-
  public registerForm: FormGroup;
-
  public loginForm: FormGroup;
-
  public response;
 
   constructor(public fb: FormBuilder,

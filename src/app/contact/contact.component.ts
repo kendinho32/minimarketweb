@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Contact } from '../models/contact';
 
 @Component({
   selector: 'app-contact',
@@ -7,10 +11,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() {
+  public contactForm: FormGroup;
+  public contact: Contact;
+
+  constructor(public fb: FormBuilder,
+             public dialog: MatDialog) {
+      this.contact = new Contact();
+
+      this.contactForm = this.fb.group({
+        name: ['', Validators.compose([Validators.required])],
+        email: ['', Validators.compose([Validators.required, Validators.email])],
+        subject: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+        message: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+      });
   }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    this.contact.name = this.contactForm.get('name').value;
+    this.contact.email = this.contactForm.get('email').value;
+    this.contact.subject = this.contactForm.get('subject').value;
+    this.contact.message = this.contactForm.get('message').value;
+
+    this.openDialog();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '350px',
+      data: {
+        contact: this.contact
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.contactForm.reset();
+    });
   }
 
 }

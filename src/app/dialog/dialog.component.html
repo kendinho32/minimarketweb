@@ -1,0 +1,10 @@
+<div mat-dialog-content class="col-sm-12">
+    <span class="clearfix"></span>
+    <div class="center-block"></div>
+    <div class="col-md-6 col-md-offset-3">
+        <mat-spinner *ngIf="!boton"></mat-spinner>
+        <br><br>
+    </div>
+  <h2 class="title text-center">{{texto}}</h2>
+  <input *ngIf="boton" type="button" class="btn btn-primary pull-right" (click)="onNoClick(false)" value="Cerrar">
+</div>
