@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProductosComponent } from './productos/productos.component';
+import { CategoriasComponent } from './categorias/categorias.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     LoginComponent,
     ContactComponent,
     CartComponent,
-    DialogComponent
+    DialogComponent,
+    ProductosComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,

@@ -6,13 +6,7 @@
 					<div class="left-sidebar">
 						<h2>Categorias</h2>
                         <!--category-productsr-->
-                        <div class="panel-group category-products" id="accordian">
-							<div *ngFor="let categoria of categorias" class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a style="cursor: pointer;" (click)="buscarProductosByCategoria(categoria.id)">{{categoria.name}} </a></h4>
-								</div>
-							</div>
-						</div>
+                        <app-categorias (emisor)="buscarProductosByCategoria($event)"></app-categorias>
                         <!--/category-products-->
 						<!--shipping-->
 						<div class="shipping text-center">
