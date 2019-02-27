@@ -20,6 +20,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductosComponent } from './productos/productos.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { EditproductsComponent } from './editproducts/editproducts.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CategoriasComponent } from './categorias/categorias.component';
     CartComponent,
     DialogComponent,
     ProductosComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    EditproductsComponent
   ],
   imports: [
     BrowserModule,
