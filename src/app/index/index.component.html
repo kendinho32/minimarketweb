@@ -24,7 +24,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-                                            <img *ngIf="product.image != null" src="{{url + 'auth/get-picture-product/' + product.image}}" width="255" height="237" />
+                                            <img *ngIf="product.image != null" src="{{ url + 'auth/get-picture-product/' + product.image }}" width="255" height="237" />
 											<img *ngIf="product.image == null" src="assets/images/home/product1.jpg" alt="" />
 											<h2>${{product.price}}</h2>
 											<p>{{product.name}}</p>

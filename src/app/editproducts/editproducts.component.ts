@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../services/producto.service';
 import { Product } from '../models/product';
 import { CategoriaService } from '../services/categoria.service';
+import { Categorie } from '../models/categorie';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-editproducts',
@@ -16,20 +18,23 @@ export class EditproductsComponent implements OnInit {
  public productForm: FormGroup;
  public idProducto: any;
  public producto: Product;
- public categories;
+ public categories: Categorie[];
  public response;
+ public url;
+ public filesToUpload: Array<File>;
 
   constructor(public fb: FormBuilder,
              private route: ActivatedRoute,
              private productService: ProductoService,
              private categorieService: CategoriaService) {
+      this.url = environment.apiBase;
       this.productForm = this.fb.group({
         name: ['', Validators.compose([Validators.required])],
         description: ['', Validators.compose([Validators.required])],
         price: ['', Validators.compose([Validators.required])],
         quantity: ['', Validators.compose([Validators.required])],
         categorie: ['', Validators.compose([Validators.required])],
-        outstanding: ['', Validators.compose([Validators.required])],
+        outstanding: [''],
         status: ['', Validators.compose([Validators.required])]
       });
   }
@@ -37,7 +42,6 @@ export class EditproductsComponent implements OnInit {
   ngOnInit() {
       this.idProducto = this.route.snapshot.paramMap.get('id');
       this.getAllCategories();
-      this.getProductById(this.idProducto);
   }
 
   getAllCategories() {
@@ -46,6 +50,7 @@ export class EditproductsComponent implements OnInit {
         this.response = response;
         if (this.response.success) {
             this.categories = this.response.data;
+            this.getProductById(this.idProducto);
         }
       },
       error => {
@@ -55,19 +60,26 @@ export class EditproductsComponent implements OnInit {
   }
 
   getProductById(id) {
+    let indice = 0;
+
     this.productService.getProductsById(id).subscribe(
       response => {
         this.response = response;
         if (this.response.success) {
             this.producto = this.response.data;
-            console.log(this.response.data.categorie);
+
+            for (let i = 0; i < this.categories.length; i++) {
+              if (this.response.data.categorie.id === this.categories[i].id) {
+                indice = i;
+              }
+            }
 
             this.productForm = this.fb.group({
                 name: [this.producto.name, Validators.compose([Validators.required])],
                 description: [this.producto.description, Validators.compose([Validators.required])],
                 price: [this.producto.price, Validators.compose([Validators.required])],
                 quantity: [this.producto.quantity, Validators.compose([Validators.required])],
-                categorie: [this.response.data.categorie.id, Validators.compose([Validators.required])],
+                categorie: [this.categories[indice], Validators.compose([Validators.required])],
                 outstanding: [this.producto.outstanding, Validators.compose([Validators.required])],
                 status: [this.producto.status, Validators.compose([Validators.required])]
             });
@@ -80,11 +92,11 @@ export class EditproductsComponent implements OnInit {
   }
 
   onSubmit() {
-
+    console.log(this.productForm.value);
   }
 
-  fileChangeEventImage() {
-
+  fileChangeEventImage(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
 }
