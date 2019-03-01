@@ -92,7 +92,26 @@ export class EditproductsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.productForm.value);
+    this.producto.name = this.productForm.get('name').value;
+    this.producto.description = this.productForm.get('description').value;
+    this.producto.price = this.productForm.get('price').value;
+    this.producto.quantity = this.productForm.get('quantity').value;
+    this.producto.categorie = this.productForm.get('categorie').value;
+    this.producto.outstanding = this.productForm.get('outstanding').value;
+    this.producto.status = this.productForm.get('status').value;
+
+    console.log(this.producto);
+    this.productService.updateProduct(this.producto).subscribe(
+      response => {
+        this.response = response;
+        if (this.response.success) {
+            console.log(response);
+        }
+      },
+      error => {
+          console.log(error);
+      }
+    );
   }
 
   fileChangeEventImage(fileInput: any) {

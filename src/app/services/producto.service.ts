@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { UtilService } from './util.service';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,14 @@ export class ProductoService {
 
       return this._http.get(environment.apiBase + 'auth/get-product/' + id + '/user/' + this.identity.id,
       { headers: headers });
+  }
+
+  updateProduct(product: Product) {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.identity.token
+        });
+
+      return this._http.put(environment.apiBase + 'auth/update-product', product, { headers: headers });
   }
 }
