@@ -41,8 +41,8 @@ export class ProductoService {
       { headers: headers });
   }
 
-  updateProducto(product: Product) {
-    const headers = new HttpHeaders({
+  updateProduct(product: Product) {
+      const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.identity.token
         });

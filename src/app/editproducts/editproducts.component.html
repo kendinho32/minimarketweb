@@ -25,6 +25,25 @@
                                     Categoria Requerida
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="center-block">Precio *:
+                                    <input type="number" class="form-control" placeholder="Ej: 9900" formControlName="price">
+                                </label>
+                                <div class="alert alert-danger" *ngIf="productForm.get('price').hasError('required') && productForm.get('price').touched">
+                                    Precio requerido
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="center-block">Cantidad *:
+                                    <input type="number" class="form-control" placeholder="Ej: 10" formControlName="quantity">
+                                </label>
+                                <div class="alert alert-danger" *ngIf="productForm.get('price').hasError('quantity') && productForm.get('quantity').touched">
+                                    Cantidad requerida
+                                </div>
+                            </div>
+
                             <div class="form-group col-md-12">
                                 <label class="center-block">Descripción *:
                                     <textarea formControlName="description" id="message" class="form-control" rows="8"></textarea>
@@ -62,7 +81,7 @@
 	    		<div class="col-sm-4">
 	    			<div class="contact-info">
 	    				<h2 class="title text-center">Imagén actual del Producto</h2>
-	    				<img *ngIf="producto" src="{{ url + 'auth/get-picture-product/' + producto.image }}" width="255" height="128" alt="" /><br><br>
+	    				<img *ngIf="producto && producto.image != null" src="{{ url + 'auth/get-picture-product/' + producto.image }}" width="255" height="128" alt="" /><br><br>
 	    				<div class="social-networks">
 	    					<h2 class="title text-center">Cambiar Imagén</h2>
 							<p>
