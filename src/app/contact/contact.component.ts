@@ -42,6 +42,7 @@ export class ContactComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '350px',
       data: {
+        componente: 'contacto',
         contact: this.contact
       }
     });

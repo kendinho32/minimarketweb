@@ -1,8 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+    height: 100%; 
+}
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", 
+    sans-serif; 
+}
+
 .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: #FA8F1F !important;
+}
+
+.checkIcon {
+  color: #FA8F1F;
+  font-size: 90px;
+}
+
+.checkIconOff {
+    color: #f70969;
+    font-size: 90px;
 }

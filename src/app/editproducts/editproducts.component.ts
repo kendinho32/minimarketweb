@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from '../services/producto.service';
 import { Product } from '../models/product';
 import { CategoriaService } from '../services/categoria.service';
 import { Categorie } from '../models/categorie';
 import { environment } from '../../environments/environment';
+import { UploadService } from '../services/upload.service';
+import { MatDialog } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-editproducts',
   templateUrl: './editproducts.component.html',
   styleUrls: ['./editproducts.component.css'],
-  providers: [ProductoService, CategoriaService]
+  providers: [ProductoService, CategoriaService, UploadService]
 })
 export class EditproductsComponent implements OnInit {
 
@@ -26,7 +29,10 @@ export class EditproductsComponent implements OnInit {
   constructor(public fb: FormBuilder,
              private route: ActivatedRoute,
              private productService: ProductoService,
-             private categorieService: CategoriaService) {
+             private categorieService: CategoriaService,
+             private _router: Router,
+             public dialog: MatDialog,
+             private uploadService: UploadService) {
       this.url = environment.apiBase;
       this.productForm = this.fb.group({
         name: ['', Validators.compose([Validators.required])],
@@ -100,22 +106,37 @@ export class EditproductsComponent implements OnInit {
     this.producto.outstanding = this.productForm.get('outstanding').value;
     this.producto.status = this.productForm.get('status').value;
 
-    console.log(this.producto);
-    this.productService.updateProduct(this.producto).subscribe(
-      response => {
-        this.response = response;
-        if (this.response.success) {
-            console.log(response);
-        }
-      },
-      error => {
-          console.log(error);
+    this.openUpdateProductoDialog();
+  }
+
+  openUpdateProductoDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '350px',
+      data: {
+        componente: 'updateProducto',
+        producto: this.producto
       }
-    );
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this._router.navigate(['/productos']);
+    });
   }
 
   fileChangeEventImage(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
+
+    this.uploadService.makeFileRequest('auth/savePicture/', this.idProducto, this.filesToUpload, 'picture').then(
+        (response: any) => {
+            this.response = response;
+            console.log('Resultado --> ' + this.response);
+            this.producto = this.response.data;
+        },
+        (error) => {
+            console.log('Error');
+            console.log(error);
+        }
+    );
   }
 
 }

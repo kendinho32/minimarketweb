@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { UtilService } from './util.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
 
-  constructor() { }
+  public identity;
 
-  public makeFileRequest(metodo: string, idProducto: number, files: Array<File>, token: string, name: string) {
+  constructor(private utilService: UtilService) {
+      this.identity = this.utilService.getIdentity();
+  }
+
+  public makeFileRequest(metodo, idProducto, files: Array<File>, name) {
+    const token = this.identity.token;
     const urlApi = environment.apiBase;
     return new Promise(function(resolve, reject) {
       const formData: any = new FormData(); // simulo un formulario clasico
@@ -41,8 +47,8 @@ export class UploadService {
 	  }, false);
 
 	  xhr.addEventListener('load', function() {
-		document.getElementById('status').innerHTML = 'Subida completada';
-		let prc = '100';
+		document.getElementById('status').innerHTML = 'Imagen almacenada exitosamente';
+		const prc = '100';
 		document.getElementById('upload-progress-bar').setAttribute('value', prc);
 		document.getElementById('upload-progress-bar').setAttribute('aria-valuenow', prc);
 		document.getElementById('upload-progress-bar').style.width = prc + '%';
