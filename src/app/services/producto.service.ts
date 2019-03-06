@@ -33,6 +33,8 @@ export class ProductoService {
 
   getProductsById(id) {
       const headers = new HttpHeaders({
+        'Access-Control-Allow-Credentials' : 'true',
+        'Access-Control-Allow-Origin' : '*',
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.identity.token
         });
@@ -44,9 +46,11 @@ export class ProductoService {
   updateProduct(product: Product) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.identity.token
+        'Access-Control-Allow-Credentials' : 'true',
+        'Access-Control-Allow-Origin' : '*',
+        'Authorization': 'Bearer dwsdwdwdwd'
         });
 
-      return this._http.put(environment.apiBase + 'auth/update-product', product, { headers: headers });
+      return this._http.post(environment.apiBase + 'auth/update-product', product, { headers: headers });
   }
 }
