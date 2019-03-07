@@ -37,7 +37,7 @@
 							<ul class="nav navbar-nav">
                                 <li><a [routerLink]="['/home']" [routerLinkActive]="['active']"><i class="fa fa-star"></i> Home</a></li>
 								<li><a [routerLink]="['/contact']" [routerLinkActive]="['active']"><i class="fa fa-crosshairs"></i> Contacto</a></li>
-								<li><a [routerLink]="['/cart']" [routerLinkActive]="['active']"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<li><a [routerLink]="['/cart']" [routerLinkActive]="['active']"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">10</span></a></li>
                                 <li><a *ngIf="!identity" [routerLink]="['/login']" [routerLinkActive]="['active']"><i class="fa fa-lock"></i> Login</a></li>
                                 <li><a *ngIf="identity" (click)="logout()" style="cursor: pointer;" [routerLinkActive]="['active']"><i class="fa fa-lock"></i> Cerrar Sesión</a></li>
 							</ul>
