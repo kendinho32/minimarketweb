@@ -7,12 +7,16 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { Phone } from '../models/phone';
 import { DialogComponent } from '../dialog/dialog.component';
+import { UtilService } from '../services/util.service';
+import { Cart } from '../models/cart';
+
+declare var $: any;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [LoginService]
+  providers: [LoginService, UtilService]
 })
 export class LoginComponent implements OnInit {
 
@@ -23,9 +27,11 @@ export class LoginComponent implements OnInit {
  public registerForm: FormGroup;
  public loginForm: FormGroup;
  public response;
+ public cart: Cart;
 
   constructor(public fb: FormBuilder,
             private _router: Router,
+            private utilService: UtilService,
             public dialog: MatDialog) {
       this.role = new Role(2, 'ROLE_USER');
       this.phone = new Phone(0, '', '9', '56');
@@ -44,7 +50,10 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cart = this.utilService.getCart();
+    $('html, body').animate({scrollTop: 0}, 'slow');
+  }
 
   onRegisterSubmit() {
     this.arrPhone = new Array<Phone>();
@@ -78,7 +87,11 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.response = result;
       if (this.response != null && this.response.success) {
-        this._router.navigate(['/']);
+        if (this.cart != null) {
+          this._router.navigate(['/cart', 0]);
+        } else  {
+          this._router.navigate(['/']);
+        }
       } else {
         this.loginForm.reset();
       }

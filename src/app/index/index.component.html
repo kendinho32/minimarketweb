@@ -17,31 +17,6 @@
 				</div>
 				
 				<div class="col-sm-9 padding-right">
-                    <!--features_items-->
-					<div class="features_items">
-						<h2 class="title text-center">Productos</h2>
-						<div *ngFor="let product of productos" class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-										<div class="productinfo text-center">
-                                            <img *ngIf="product.image != null" src="{{ url + 'auth/get-picture-product/' + product.image }}" width="255" height="237" />
-											<img *ngIf="product.image == null" src="assets/images/home/product1.jpg" alt="" />
-											<h2>${{product.price}}</h2>
-											<p>{{product.name}}</p>
-											<a [routerLink]="['/cart', product.id]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>${{product.price}}</h2>
-												<p>{{product.description}}</p>
-												<a [routerLink]="['/cart', product.id]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
-											</div>
-										</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--features_items-->
 					<!--recommended_items-->
 					<div class="recommended_items">
 						<h2 class="title text-center">Productos Recomendados</h2>
@@ -96,6 +71,31 @@
 						</div>
 					</div>
 					<!--/recommended_items-->
+                    <!--features_items-->
+					<div class="features_items">
+						<h2 class="title text-center">Productos</h2>
+						<div *ngFor="let product of productos" class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+                                            <img *ngIf="product.image != null" src="{{ url + 'auth/get-picture-product/' + product.image }}" width="255" height="237" />
+											<img *ngIf="product.image == null" src="assets/images/home/product1.jpg" alt="" />
+											<h2>${{product.price}}</h2>
+											<p>{{product.name}}</p>
+											<a [routerLink]="['/cart', product.id]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
+										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>${{product.price}}</h2>
+												<p>{{product.description}}</p>
+												<a [routerLink]="['/cart', product.id]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
+											</div>
+										</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--features_items-->
 				</div>
 			</div>
 		</div>

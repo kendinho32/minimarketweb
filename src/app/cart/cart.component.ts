@@ -31,9 +31,20 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
       this.idProducto = this.route.snapshot.paramMap.get('id');
+      this.cart = this.utilService.getCart();
       this.identity = this.utilService.getIdentity();
-      this.cart = new Cart(0, null, 0, 0);
-      this.getProductById(this.idProducto);
+
+      if (this.cart != null) {
+        this.arrProducts = this.cart.products;
+      } else {
+        this.cart = new Cart(0, null, 0, 0);
+      }
+
+      if (this.idProducto > 0) {
+        this.getProductById(this.idProducto);
+      }
+
+      console.log(this.cart);
   }
 
   getProductById(id) {

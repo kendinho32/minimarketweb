@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class UtilService {
 
  public identity;
+ public card;
 
   constructor() { }
 
@@ -17,5 +18,11 @@ export class UtilService {
     const identity = JSON.parse(localStorage.getItem('identity'));
     this.identity = identity !== 'undefined' ? identity : null;
     return this.identity;
+  }
+
+  getCart() {
+    const card = JSON.parse(localStorage.getItem('cart'));
+    this.card = card !== 'undefined' ? card : null;
+    return this.card;
   }
 }
