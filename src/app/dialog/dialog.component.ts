@@ -28,6 +28,7 @@ export class DialogComponent implements OnInit {
 
   public componente: string;
   public error: boolean;
+  public addProduct: boolean;
 
   ngOnInit(): void {}
 
@@ -39,6 +40,7 @@ export class DialogComponent implements OnInit {
     this.componente = data.componente;
     this.boton = false;
     this.error = false;
+    this.addProduct = false;
 
     if (this.componente === 'contacto') {
         this.contact = data.contact;
@@ -62,6 +64,12 @@ export class DialogComponent implements OnInit {
         this.producto = data.producto;
         this.texto = 'Actualizando producto, por favor espere...!';
         this.sendFormUpdateProducto();
+    }
+
+    if (this.componente === 'registerCart') {
+        this.texto = 'Producto agregado exitosamente al carrito de compras...!';
+        this.boton = true;
+        this.addProduct = true;
     }
   }
 

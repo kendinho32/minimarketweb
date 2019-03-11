@@ -23,44 +23,33 @@
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="item active">	
-									<div class="col-sm-4">
+									<div *ngFor="let productRecommende of productosRecommended" class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-                                                    <img src="{{url + 'auth/get-picture-product/539676e4-a67a-416d-aa3a-a3dafeefb8f9_mani.png'}}" width="255" height="128" />
-												    <h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
+                                                    <img src="{{url + 'auth/get-picture-product/' + productRecommende.image}}" width="255" height="128" />
+												    <h2>${{productRecommende.price}}</h2>
+													<p>{{productRecommende.name}}</p>
+													<a (click)="getProductById(productRecommende.id)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
 												</div>
-												
 											</div>
 										</div>
-									</div>
-									<div class="col-sm-4">
+                                    </div>                                   
+                                </div>
+                                <div class="item">	
+									<div *ngFor="let productRecommende2 of firstTreeRecommendedProducts" class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-													<img src="assets/images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    <img src="{{url + 'auth/get-picture-product/' + productRecommende2.image}}" width="255" height="128" />
+												    <h2>${{productRecommende2.price}}</h2>
+													<p>{{productRecommende2.name}}</p>
+													<a (click)="getProductById(productRecommende2.id)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="assets/images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+                                    </div>                                   
+                                </div>
 							</div>
 							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
 								<i class="fa fa-angle-left"></i>
@@ -82,13 +71,13 @@
 											<img *ngIf="product.image == null" src="assets/images/home/product1.jpg" alt="" />
 											<h2>${{product.price}}</h2>
 											<p>{{product.name}}</p>
-											<a [routerLink]="['/cart', product.id]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
+											<a (click)="getProductById(product.id)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2>${{product.price}}</h2>
 												<p>{{product.description}}</p>
-												<a [routerLink]="['/cart', product.id]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
+												<a (click)="getProductById(product.id)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
 											</div>
 										</div>
                                 </div>

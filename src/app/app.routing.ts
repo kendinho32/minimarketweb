@@ -16,7 +16,7 @@ const appRoutes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'cart/:id', component: CartComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'edit-producto/:id', component: EditproductsComponent },
   { path: '**', component: IndexComponent }

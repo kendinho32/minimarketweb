@@ -23,6 +23,10 @@ export class ProductoService {
     return this._http.get(environment.apiBase + 'auth/get-all-products', { headers: this.headers });
   }
 
+  getAllProductosRecommended(): Observable<any> {
+    return this._http.get(environment.apiBase + 'auth/get-all-products-recommended', { headers: this.headers });
+  }
+
   getProductsByCategoria(id) {
       return this._http.get(environment.apiBase + 'auth/get-products-by-categorie/' + id, { headers: this.headers });
   }

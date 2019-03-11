@@ -6,6 +6,7 @@ export class Product {
     public description: string;
     public price: number;
     public quantity: number;
+    public quantitySelect: number;
     public image: string;
     public categorie: Categorie;
     public outstanding: boolean;
@@ -17,6 +18,7 @@ export class Product {
       this.description = '';
       this.price = 0;
       this.quantity = 0;
+      this.quantitySelect = 0;
       this.image = '';
       this.categorie = new Categorie();
       this.outstanding = false;

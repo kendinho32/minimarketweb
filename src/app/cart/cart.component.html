@@ -2,94 +2,42 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li class="active">Shopping Cart</li>
+				  <li><a [routerLink]="['/home']">Home</a></li>
+				  <li class="active">Carrito de compras</li>
 				</ol>
 			</div>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
+							<td class="image">Articulo</td>
 							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
+							<td class="price">Precio</td>
+							<td class="quantity">Cantidad</td>
 							<td class="total">Total</td>
 							<td></td>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr *ngFor="let product of arrProducts; let index = index">
 							<td class="cart_product">
-								<a href=""><img src="assets/images/cart/one.png" alt=""></a>
+								<img src="{{ url + 'auth/get-picture-product/' + product.image }}" width="110" height="110" alt="">
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<h4>{{product.description}}</h4>
 							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p>${{product.price}}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+									<a class="cart_quantity_up" style="cursor: pointer;" (click)="addCountProduct(index)"> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{product.quantitySelect}}" autocomplete="off" size="2">
+									<a class="cart_quantity_down" style="cursor: pointer;" (click)="subtractCountProduct(index)"> - </a>
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="assets/images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="assets/images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">${{product.price * product.quantitySelect}}</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -104,8 +52,8 @@
 <section *ngIf="identity" id="do_action">
 		<div class="container">
 			<div class="heading">
-				<h3>What would you like to do next?</h3>
-				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+				<h3>Selecciona como deseas terminar tu compra</h3>
+				<p>Puedes seleccionar delivery (costo adicional) o retiro en el local.</p>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
@@ -113,11 +61,11 @@
 						<ul class="user_option">
 							<li>
 								<input type="checkbox">
-								<label>Use Coupon Code</label>
+								<label>Delivery</label>
 							</li>
 							<li>
 								<input type="checkbox">
-								<label>Use Gift Voucher</label>
+								<label>Retiro en el local</label>
 							</li>
 							<li>
 								<input type="checkbox">
@@ -158,20 +106,17 @@
 								<input type="text">
 							</li>
 						</ul>
-						<a class="btn btn-default update" href="">Get Quotes</a>
-						<a class="btn btn-default check_out" href="">Continue</a>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>$59</span></li>
-							<li>Eco Tax <span>$2</span></li>
-							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$61</span></li>
+                            <li><strong>Totales</strong></li>
+							<li>Sub Total <span>$<strong>{{cart.total}}</strong></span></li>
+							<li>Costo Envio <span>Free</span></li>
+							<li>Total <span>$<strong>{{cart.total}}</strong></span></li>
 						</ul>
-							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
+						<a class="btn btn-default update" href="">Realizar Pedido</a>
 					</div>
 				</div>
 			</div>

@@ -3,7 +3,7 @@
     <div class="center-block"></div>
     <div class="col-md-6 col-md-offset-3">
         <mat-spinner *ngIf="!boton && !error"></mat-spinner>
-        <i *ngIf="boton && response.success" class="material-icons checkIcon">
+        <i *ngIf="(response != null && boton && response.success) || addProduct" class="material-icons checkIcon">
 	      check_circle_outline
         </i>
         <i *ngIf="error" class="material-icons checkIconOff">
@@ -12,6 +12,6 @@
         <br><br>
     </div>
   <h2 class="title text-center">{{texto}}</h2>
-  <input *ngIf="boton && (componente === 'contacto' || componente === 'updateProducto')" type="button" class="btn btn-primary pull-right" (click)="onNoClick(false)" value="Cerrar">
+  <input *ngIf="boton && (componente === 'contacto' || componente === 'updateProducto' || componente === 'registerCart')" type="button" class="btn btn-primary pull-right" (click)="onNoClick(false)" value="Cerrar">
   <button *ngIf="(boton || error) && (componente === 'login' || componente === 'register')" class="btn btn-primary pull-right" [mat-dialog-close]="response" mat-raised-button>Cerrar</button>
 </div>
