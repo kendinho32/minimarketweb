@@ -1,0 +1,16 @@
+<div mat-dialog-content class="col-sm-12">
+    <span class="clearfix"></span>
+    <div class="center-block"></div>
+    <div class="col-md-6 col-md-offset-3">
+        <mat-spinner *ngIf="validateCart.result"></mat-spinner>
+        <i *ngIf="success" class="material-icons checkIcon">
+	      check_circle_outline
+        </i>
+        <i *ngIf="!validateCart.result" class="material-icons checkIconOff">
+	      highlight_off
+	    </i>
+        <br><br>
+    </div>
+  <h2 class="title text-center">{{validateCart.msj}}</h2>
+  <button class="btn btn-primary pull-right" [mat-dialog-close]="validateCart" mat-raised-button>Cerrar</button>
+</div>

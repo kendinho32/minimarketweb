@@ -15,12 +15,13 @@ import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductosComponent } from './productos/productos.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { EditproductsComponent } from './editproducts/editproducts.component';
+import { DialogcartComponent } from './dialogcart/dialogcart.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EditproductsComponent } from './editproducts/editproducts.component';
     DialogComponent,
     ProductosComponent,
     CategoriasComponent,
-    EditproductsComponent
+    EditproductsComponent,
+    DialogcartComponent
   ],
   imports: [
     BrowserModule,
@@ -47,10 +49,13 @@ import { EditproductsComponent } from './editproducts/editproducts.component';
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatRadioModule,
+    MatSelectModule,
     MatProgressSpinnerModule
   ],
   entryComponents: [
-      DialogComponent
+      DialogComponent,
+      DialogcartComponent
   ],
   providers: [appRoutingProviders, CategoriaService],
   bootstrap: [AppComponent]

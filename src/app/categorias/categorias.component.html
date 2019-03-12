@@ -1,5 +1,10 @@
 <!--category-productsr-->
 <div class="panel-group category-products" id="accordian">
+    <div class="panel panel-default">
+	    <div class="panel-heading">
+            <h4 class="panel-title"><a style="cursor: pointer;" (click)="buscarProductosByCategoria(0)">TODOS LOS PRODUCTOS </a></h4>
+		</div>
+	</div>
     <div *ngFor="let categoria of categorias" class="panel panel-default">
 	    <div class="panel-heading">
 		    <h4 class="panel-title"><a style="cursor: pointer;" (click)="buscarProductosByCategoria(categoria.id)">{{categoria.name}} </a></h4>

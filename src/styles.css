@@ -24,3 +24,17 @@ body {
     color: #f70969;
     font-size: 90px;
 }
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent 
+.mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked 
+.mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color:  #FA8F1F !important;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #FA8F1F !important;
+}
+
+.mat-form-field-infix {
+    width: 145px !important;
+}

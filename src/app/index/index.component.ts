@@ -78,17 +78,22 @@ export class IndexComponent implements OnInit {
 
   buscarProductosByCategoria(event) {
     this.idCategoria = event.idCategoria;
-    this.productoService.getProductsByCategoria(this.idCategoria).subscribe(
-      response => {
-        this.response = response;
-        if (this.response.success) {
-            this.productos = this.response.data;
-        }
-      },
-      error => {
-          console.log(error);
-      }
-    );
+
+    if (this.idCategoria === 0) {
+        this.getAllProductos();
+    } else {
+        this.productoService.getProductsByCategoria(this.idCategoria).subscribe(
+            response => {
+                this.response = response;
+                if (this.response.success) {
+                    this.productos = this.response.data;
+                }
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    }
   }
 
   getProductById(id) {
@@ -118,7 +123,7 @@ export class IndexComponent implements OnInit {
                 localStorage.setItem('cart', JSON.stringify(this.cart));
             } else {
                 this.arrProducts = new Array<Product>();
-                this.cart = new Cart(0, null, 0, 0);
+                this.cart = new Cart(0, '', null, null, 0, 0);
                 this.producto.quantitySelect = 1;
                 this.arrProducts.push(this.producto);
                 this.cart.products = this.arrProducts;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilService } from '../services/util.service';
 import { ProductoService } from '../services/producto.service';
@@ -6,6 +7,8 @@ import { environment } from '../../environments/environment';
 import { Product } from '../models/product';
 import { Cart } from '../models/cart';
 import { CartService } from '../services/cart.service';
+import { DialogcartComponent } from '../dialogcart/dialogcart.component';
+import { Direccion } from '../models/direccion';
 
 @Component({
   selector: 'app-cart',
@@ -21,15 +24,21 @@ export class CartComponent implements OnInit {
   public producto: Product;
   public arrProducts: Product[];
   public cart: Cart;
+  public direccion: Direccion;
   public url;
+
+  public comunas: string[];
 
   constructor(private route: ActivatedRoute,
              private utilService: UtilService,
              private productService: ProductoService,
+             public dialog: MatDialog,
              private _router: Router,
              private cartService: CartService) {
     this.arrProducts = new Array<Product>();
     this.url = environment.apiBase;
+    this.comunas = ['Ñuñoa', 'Santiago Centro'];
+    this.direccion = new Direccion('', '', '');
   }
 
   ngOnInit() {
@@ -38,8 +47,6 @@ export class CartComponent implements OnInit {
 
       if (this.cart != null) {
         this.arrProducts = this.cart.products;
-      } else {
-        this.cart = new Cart(0, null, 0, 0);
       }
 
       if (this.identity === null) {
@@ -60,6 +67,38 @@ export class CartComponent implements OnInit {
       this.cart.total = this.cartService.totalCard(this.arrProducts);
       this.cart.products = this.arrProducts;
       localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  deleteProduct(index) {
+      this.arrProducts.splice(index, 1);
+      this.cart.total = this.cartService.totalCard(this.arrProducts);
+      this.cart.products = this.arrProducts;
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  realizarPedido() {
+      this.cart.direccion = this.direccion;
+      this.cart.idUsuario = this.identity.id;
+      this.openDialog();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogcartComponent, {
+      width: '350px',
+      data: {
+        cart: this.cart
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
+  }
+
+  addShipping(tipo: string) {
+      if (tipo === 'delivery') {
+        this.cart.shipping = 2000;
+      } else {
+        this.cart.shipping = 0;
+      }
   }
 
 }
