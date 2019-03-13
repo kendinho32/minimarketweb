@@ -6,11 +6,11 @@
         <i *ngIf="success" class="material-icons checkIcon">
 	      check_circle_outline
         </i>
-        <i *ngIf="!validateCart.result" class="material-icons checkIconOff">
+        <i *ngIf="!validateCart.result && !success" class="material-icons checkIconOff">
 	      highlight_off
 	    </i>
         <br><br>
     </div>
   <h2 class="title text-center">{{validateCart.msj}}</h2>
-  <button class="btn btn-primary pull-right" [mat-dialog-close]="validateCart" mat-raised-button>Cerrar</button>
+  <button class="btn btn-primary pull-right" [mat-dialog-close]="success" mat-raised-button>Cerrar</button>
 </div>

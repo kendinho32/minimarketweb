@@ -61,8 +61,25 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="chose_area">
+                        <mat-radio-group [(ngModel)]="cart.pago">
+                            <ul class="user_option">
+                                <li>
+                                    <strong>Tipo de pago:</strong>
+                                </li>
+                                <li>
+                                    <mat-radio-button value="efectivo">Efectivo</mat-radio-button>
+                                </li>
+                                <li></li>
+                                <li>
+                                    <mat-radio-button value="transferencia">Transferencia</mat-radio-button>
+                                </li>
+                            </ul>
+                        </mat-radio-group>
                         <mat-radio-group [(ngModel)]="cart.tipo">
                             <ul class="user_option">
+                                <li>
+                                    <strong>Entrega de Productos:</strong>
+                                </li>
                                 <li>
                                     <mat-radio-button (click)="addShipping('delivery')" value="delivery">Delivery</mat-radio-button>
                                 </li>

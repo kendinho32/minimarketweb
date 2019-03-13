@@ -8,6 +8,8 @@ import { CartService } from '../services/cart.service';
 import { UtilService } from '../services/util.service';
 import { DialogComponent } from '../dialog/dialog.component';
 
+declare var $: any;
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -40,6 +42,7 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this.getAllProductos();
     this.getAllProductosRecommended();
+    $('html, body').animate({scrollTop: 0}, 'slow');
   }
 
   getAllProductos() {
@@ -123,7 +126,7 @@ export class IndexComponent implements OnInit {
                 localStorage.setItem('cart', JSON.stringify(this.cart));
             } else {
                 this.arrProducts = new Array<Product>();
-                this.cart = new Cart(0, '', null, null, 0, 0);
+                this.cart = new Cart(0, '', '', null, null, 0, 0, '');
                 this.producto.quantitySelect = 1;
                 this.arrProducts.push(this.producto);
                 this.cart.products = this.arrProducts;

@@ -43,6 +43,13 @@ export class CartService {
     return total;
   }
 
+  updateIdZero(arrProducts: Product[]): Product[] {
+     arrProducts.forEach(function (value) {
+         value.id = 0;
+    });
+    return arrProducts;
+  }
+
   updateQuantitySelectByProduct(idProduct: number, quantitySelect: number, arrProducts: Product[]): Product[] {
     arrProducts.forEach(function (value) {
         if (value.id === idProduct) {
@@ -56,16 +63,21 @@ export class CartService {
   validateCart(cart: Cart) {
     const result = {'result': true, 'msj': 'Realizando pedido :)'};
 
-    if (cart.tipo == null || cart.tipo === '') {
+    if (cart.pago == null || cart.pago === '') {
         result.result = false;
-        result.msj = 'Debe seleccionar si desea Delivery o retira en el local';
+        result.msj = 'Debe seleccionar el tipo de pago';
     } else {
-        if (cart.tipo === 'delivery') {
-            if ((cart.direccion.comuna == null || cart.direccion.comuna === '') ||
-                (cart.direccion.calle == null || cart.direccion.calle === '') ||
-                (cart.direccion.nro == null || cart.direccion.nro === '')) {
-                result.result = false;
-                result.msj = 'Debes escribir toda la dirección para el envio';
+        if (cart.tipo == null || cart.tipo === '') {
+            result.result = false;
+            result.msj = 'Debe seleccionar si desea Delivery o retira en el local';
+        } else {
+            if (cart.tipo === 'delivery') {
+                if ((cart.direccion.comuna == null || cart.direccion.comuna === '') ||
+                    (cart.direccion.calle == null || cart.direccion.calle === '') ||
+                    (cart.direccion.nro == null || cart.direccion.nro === '')) {
+                    result.result = false;
+                    result.msj = 'Debes escribir toda la dirección para el envio';
+                }
             }
         }
     }

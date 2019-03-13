@@ -42,6 +42,8 @@ export class HeaderComponent implements OnInit, DoCheck {
       if (this.cart != null) {
         this.arrProducts = this.cart.products;
         this.countProducts = this.arrProducts.length;
+      } else {
+        this.countProducts = 0;
       }
   }
 

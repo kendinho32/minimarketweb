@@ -28,6 +28,7 @@ export class CartComponent implements OnInit {
   public url;
 
   public comunas: string[];
+  public success: boolean;
 
   constructor(private route: ActivatedRoute,
              private utilService: UtilService,
@@ -64,9 +65,14 @@ export class CartComponent implements OnInit {
 
   subtractCountProduct(index) {
       this.arrProducts[index].quantitySelect = this.arrProducts[index].quantitySelect - 1;
-      this.cart.total = this.cartService.totalCard(this.arrProducts);
-      this.cart.products = this.arrProducts;
-      localStorage.setItem('cart', JSON.stringify(this.cart));
+
+      if (this.arrProducts[index].quantitySelect < 1) {
+        this.deleteProduct(index);
+      } else {
+        this.cart.total = this.cartService.totalCard(this.arrProducts);
+        this.cart.products = this.arrProducts;
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+      }
   }
 
   deleteProduct(index) {
@@ -90,7 +96,13 @@ export class CartComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(() => {});
+    dialogRef.afterClosed().subscribe(result => {
+      this.success = result;
+      if (this.success) {
+        localStorage.removeItem('cart'); // Eliminamos el objeto de sesion
+        this._router.navigate(['/']);
+      }
+    });
   }
 
   addShipping(tipo: string) {

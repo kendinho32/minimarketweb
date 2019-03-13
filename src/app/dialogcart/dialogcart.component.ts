@@ -15,6 +15,7 @@ export class DialogcartComponent implements OnInit {
   public texto: string;
   public validateCart;
   public success: boolean;
+  public response;
 
   constructor(public dialogRef: MatDialogRef<DialogcartComponent>,
             @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,26 +31,32 @@ export class DialogcartComponent implements OnInit {
   enviarPedido() {
     this.validateCart = this.cartService.validateCart(this.cart);
 
-    this.cartService.sendOrder(this.cart).subscribe(
-      response => {
-        /*
-        this.response = response;
-        if (this.response.success) {
-            this.texto = this.response.message + ' :)';
-        } else {
-            this.texto = this.response.message + ' :(';
-        }
-        this.boton = true;
-        */
-      },
-      error => {
-        /*
-        console.log(error);
-        this.texto = error.error.message + ' :(';
-        this.error = true;
-        */
-      }
-    );
+    if (this.validateCart.result) {
+        this.cart.products = this.cartService.updateIdZero(this.cart.products);
+        this.cart.status = 'Ingresada';
+        this.cartService.sendOrder(this.cart).subscribe(
+            response => {
+                this.response = response;
+
+                if (this.response.success) {
+                    this.validateCart.result = false;
+                    this.success = true;
+                    this.validateCart.msj = this.response.message + ' :)';
+
+                } else {
+                    this.validateCart.msj = 'Orden no realizada :(';
+                    this.success = false;
+                    this.validateCart.result = false;
+                }
+            },
+            error => {
+                console.log(error);
+                this.validateCart.msj = 'Orden no realizada :(';
+                this.success = false;
+                this.validateCart.result = false;
+            }
+        );
+    }
   }
 
   onNoClick(): void {
