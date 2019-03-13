@@ -9,6 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductosComponent } from './productos/productos.component';
 import { EditproductsComponent } from './editproducts/editproducts.component';
+import { MiscomprasComponent } from './miscompras/miscompras.component';
 
 // Componentes
 
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'edit-producto/:id', component: EditproductsComponent },
+  { path: 'mis-compras', component: MiscomprasComponent },
   { path: '**', component: IndexComponent }
 ];
 

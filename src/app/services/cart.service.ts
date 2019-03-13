@@ -85,7 +85,7 @@ export class CartService {
   }
 
   sendOrder(cart: Cart): Observable<any> {
-    return this._http.post(environment.apiBase + 'auth/sendOrder', cart, {headers: this.headers});
+    return this._http.post(environment.apiBase + 'auth/sendOrder/' + cart.idUsuario, cart, {headers: this.headers});
   }
 
 }

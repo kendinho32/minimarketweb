@@ -22,6 +22,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { EditproductsComponent } from './editproducts/editproducts.component';
 import { DialogcartComponent } from './dialogcart/dialogcart.component';
+import { MiscomprasComponent } from './miscompras/miscompras.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DialogcartComponent } from './dialogcart/dialogcart.component';
     ProductosComponent,
     CategoriasComponent,
     EditproductsComponent,
-    DialogcartComponent
+    DialogcartComponent,
+    MiscomprasComponent
   ],
   imports: [
     BrowserModule,
