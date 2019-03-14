@@ -4,6 +4,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Contact } from '../models/contact';
 
+declare var $: any;
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -27,6 +29,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+      $('html, body').animate({scrollTop: 0}, 'slow');
   }
 
   onSubmit() {

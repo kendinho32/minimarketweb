@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
+import { Router } from '@angular/router';
 import { UtilService } from '../services/util.service';
 import { Cart } from '../models/cart';
 import { Product } from '../models/product';
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit, DoCheck {
   public arrProducts: Product[];
 
   constructor(private productoService: ProductoService,
-             private utilService: UtilService) {
+             private utilService: UtilService,
+             private _router: Router) {
         this.countProducts = 0;
   }
 
@@ -50,17 +52,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   buscarProducto(event) {
     if (event.key === 'Enter') {
         console.log(this.searchProduct);
-        this.productoService.getProductsByName(this.searchProduct).subscribe(
-            response => {
-                this.response = response;
-                if (this.response.success) {
-                    this.product = this.response.data;
-                }
-            },
-            error => {
-                console.log(error);
-            }
-        );
+        this._router.navigate(['/home', this.searchProduct]);
     }
   }
 

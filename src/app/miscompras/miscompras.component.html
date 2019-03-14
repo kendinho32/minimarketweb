@@ -1,3 +1,64 @@
-<p>
-  miscompras works!
-</p>
+<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a [routerLink]="['/home']">Home</a></li>
+				  <li class="active">Mis Compras</li>
+				</ol>
+            </div>
+            <div>
+                <mat-spinner *ngIf="!orders"></mat-spinner> 
+            </div>
+
+            <div *ngIf="ordenesVacias" class="alert alert-success col-sm-12">
+                No tienes registrada ninguna compra, <a [routerLink]="['/home']">Llenar Carrito</a>
+            </div>
+			<div *ngIf="!ordenesVacias" class="table-responsive cart_info">
+                
+                <table *ngFor="let order of orders" class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Producto</td>
+							<td class="description">Fecha: {{order.created}}</td>
+							<td class="price">Precio</td>
+							<td class="quantity">cantidad</td>
+                            <td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let product of order.products; let index = index">
+							<td class="cart_product">
+								<img src="{{ url + 'auth/get-picture-product/' + product.image }}" width="110" height="110" alt="">
+							</td>
+							<td class="cart_description">
+								<h4>{{product.description}}</h4>
+							</td>
+							<td class="cart_price">
+								<p>${{product.price}}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<input class="cart_quantity_input" readonly="readonly" type="text" name="quantity" value="{{product.quantitySelect}}" autocomplete="off" size="2">
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">${{product.price * product.quantitySelect}}</p>
+							</td>
+						</tr>
+
+                        <tr>
+                            <td colspan="3" class="cart_price"><p>Estatus</p></td>
+                            <td colspan="2"><p class="cart_total_price">{{order.status}}</p></td>
+                        </tr>
+						<tr>
+                            <td colspan="3" class="cart_price"><p>Total Pedido (Total + envio)</p></td>
+                            <td colspan="2"><p class="cart_total_price">$ <strong>{{order.total + order.shipping}}</strong></p></td>
+                        </tr>
+                    </tbody>
+                    <br><br>
+                </table>
+			</div>
+		</div>
+	</section> 
+	<!--/#cart_items-->

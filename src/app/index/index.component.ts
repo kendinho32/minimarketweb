@@ -7,6 +7,7 @@ import { Cart } from '../models/cart';
 import { CartService } from '../services/cart.service';
 import { UtilService } from '../services/util.service';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 declare var $: any;
 
@@ -29,8 +30,10 @@ export class IndexComponent implements OnInit {
   public identity;
 
   public idCategoria: number;
+  public busqueda: string;
 
   constructor(private productoService: ProductoService,
+              private route: ActivatedRoute,
               private cartService: CartService,
               public dialog: MatDialog,
               private utilService: UtilService) {
@@ -40,9 +43,30 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllProductos();
+    this.busqueda = this.route.snapshot.paramMap.get('id');
+
+    if (this.busqueda != null) {
+        this.buscarProducto(this.busqueda);
+    } else {
+        this.getAllProductos();
+    }
+
     this.getAllProductosRecommended();
     $('html, body').animate({scrollTop: 0}, 'slow');
+  }
+
+   buscarProducto(busqueda: string) {
+        this.productoService.getProductsByName(busqueda).subscribe(
+            response => {
+                this.response = response;
+                if (this.response.success) {
+                    this.productos = this.response.data;
+                }
+            },
+            error => {
+                console.log(error);
+            }
+        );
   }
 
   getAllProductos() {
@@ -126,7 +150,7 @@ export class IndexComponent implements OnInit {
                 localStorage.setItem('cart', JSON.stringify(this.cart));
             } else {
                 this.arrProducts = new Array<Product>();
-                this.cart = new Cart(0, '', '', null, null, 0, 0, '');
+                this.cart = new Cart(0, '', '', null, null, 0, 0, '', null);
                 this.producto.quantitySelect = 1;
                 this.arrProducts.push(this.producto);
                 this.cart.products = this.arrProducts;

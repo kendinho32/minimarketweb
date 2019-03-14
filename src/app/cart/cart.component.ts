@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UtilService } from '../services/util.service';
 import { ProductoService } from '../services/producto.service';
 import { environment } from '../../environments/environment';
@@ -9,6 +9,8 @@ import { Cart } from '../models/cart';
 import { CartService } from '../services/cart.service';
 import { DialogcartComponent } from '../dialogcart/dialogcart.component';
 import { Direccion } from '../models/direccion';
+
+declare var $: any;
 
 @Component({
   selector: 'app-cart',
@@ -30,9 +32,7 @@ export class CartComponent implements OnInit {
   public comunas: string[];
   public success: boolean;
 
-  constructor(private route: ActivatedRoute,
-             private utilService: UtilService,
-             private productService: ProductoService,
+  constructor(private utilService: UtilService,
              public dialog: MatDialog,
              private _router: Router,
              private cartService: CartService) {
@@ -54,6 +54,7 @@ export class CartComponent implements OnInit {
         // se redirecciona a la pagina de login
         this._router.navigate(['/login']);
     }
+    $('html, body').animate({scrollTop: 0}, 'slow');
   }
 
   addCountProduct(index) {

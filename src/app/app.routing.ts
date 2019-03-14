@@ -15,6 +15,7 @@ import { MiscomprasComponent } from './miscompras/miscompras.component';
 
 const appRoutes: Routes = [
   { path: '', component: IndexComponent },
+  { path: 'home/:id', component: IndexComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'cart', component: CartComponent },

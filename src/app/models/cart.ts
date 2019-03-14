@@ -10,6 +10,7 @@ export class Cart {
     public products: Product[],
     public shipping: number,
     public total: number,
-    public status: string) {}
+    public status: string,
+    public created: Date) {}
 
 }
