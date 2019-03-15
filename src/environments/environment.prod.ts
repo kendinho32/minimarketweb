@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBase: 'http://localhost:9080/api/',
+  apiBase: 'https://mini-market2019.herokuapp.com/api/',
   env: 'prod'
 };
