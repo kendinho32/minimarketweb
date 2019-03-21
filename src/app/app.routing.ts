@@ -10,6 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProductosComponent } from './productos/productos.component';
 import { EditproductsComponent } from './editproducts/editproducts.component';
 import { MiscomprasComponent } from './miscompras/miscompras.component';
+import { CreatesliderComponent } from './createslider/createslider.component';
 
 // Componentes
 
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'edit-producto/:id', component: EditproductsComponent },
   { path: 'mis-compras', component: MiscomprasComponent },
+  { path: 'slider', component: CreatesliderComponent },
   { path: '**', component: IndexComponent }
 ];
 
