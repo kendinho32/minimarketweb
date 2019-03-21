@@ -23,6 +23,7 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { EditproductsComponent } from './editproducts/editproducts.component';
 import { DialogcartComponent } from './dialogcart/dialogcart.component';
 import { MiscomprasComponent } from './miscompras/miscompras.component';
+import { CreatesliderComponent } from './createslider/createslider.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MiscomprasComponent } from './miscompras/miscompras.component';
     CategoriasComponent,
     EditproductsComponent,
     DialogcartComponent,
-    MiscomprasComponent
+    MiscomprasComponent,
+    CreatesliderComponent
   ],
   imports: [
     BrowserModule,
