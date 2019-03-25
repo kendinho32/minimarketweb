@@ -24,6 +24,7 @@ import { EditproductsComponent } from './editproducts/editproducts.component';
 import { DialogcartComponent } from './dialogcart/dialogcart.component';
 import { MiscomprasComponent } from './miscompras/miscompras.component';
 import { CreatesliderComponent } from './createslider/createslider.component';
+import { GetslidersComponent } from './getsliders/getsliders.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CreatesliderComponent } from './createslider/createslider.component';
     EditproductsComponent,
     DialogcartComponent,
     MiscomprasComponent,
-    CreatesliderComponent
+    CreatesliderComponent,
+    GetslidersComponent
   ],
   imports: [
     BrowserModule,
