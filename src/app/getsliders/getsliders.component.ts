@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SliderService } from '../services/slider.service';
+import { environment } from '../../environments/environment';
 import { Slider } from '../models/slider';
 
 @Component({
@@ -12,8 +13,11 @@ export class GetslidersComponent implements OnInit {
 
   public response: any;
   public sliders: Slider[];
+  public url;
 
-  constructor(private sliderService: SliderService) { }
+  constructor(private sliderService: SliderService) {
+      this.url = environment.apiBase;
+  }
 
   ngOnInit() {
       this.getAllSlider();

@@ -26,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'mis-compras', component: MiscomprasComponent },
   { path: 'slider', component: GetslidersComponent },
   { path: 'create-slider', component: CreatesliderComponent },
+  { path: 'create-slider/:id', component: CreatesliderComponent },
   { path: '**', component: IndexComponent }
 ];
 

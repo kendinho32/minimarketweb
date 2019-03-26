@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { Slider } from '../models/slider';
 import { UploadService } from '../services/upload.service';
@@ -21,9 +22,10 @@ export class CreatesliderComponent implements OnInit {
   public response: any;
   public success: boolean;
   public error: boolean;
-
+  public idSlider: string;
 
   constructor(public fb: FormBuilder,
+              private route: ActivatedRoute,
               private uploadService: UploadService,
               private sliderService: SliderService) {
       this.sliderForm = this.fb.group({
@@ -32,12 +34,37 @@ export class CreatesliderComponent implements OnInit {
         status: ['', Validators.compose([Validators.required])]
       });
       this.url = environment.apiBase;
-      this.slider = new Slider(0, '', '', '', '', false);
       this.success = false;
       this.error = false;
   }
 
   ngOnInit() {
+      this.idSlider = this.route.snapshot.paramMap.get('id');
+      if (this.idSlider != null) {
+        this.getSlider(this.idSlider);
+      } else {
+        this.slider = new Slider(0, '', '', '', '', false);
+      }
+  }
+
+  getSlider (id) {
+      this.sliderService.getSlider(id).subscribe(
+            response => {
+               this.response = response;
+               console.log(this.response);
+               if (this.response.success) {
+                this.slider = this.response.data;
+                this.sliderForm = this.fb.group({
+                    title: [this.slider.title, Validators.compose([Validators.required])],
+                    description: [this.slider.description, Validators.compose([Validators.required])],
+                    status: [this.slider.status, Validators.compose([Validators.required])]
+                });
+               }
+            },
+            error => {
+                console.log(error);
+            }
+        );
   }
 
   onSubmit() {

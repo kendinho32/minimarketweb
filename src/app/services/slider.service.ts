@@ -23,4 +23,8 @@ export class SliderService {
     return this._http.get(environment.apiBase + 'slider/get-all-sliders', {headers: this.headers});
   }
 
+  getSlider(id): Observable<any> {
+    return this._http.get(environment.apiBase + 'slider/get-slider/' + id, {headers: this.headers});
+  }
+
 }

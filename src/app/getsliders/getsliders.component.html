@@ -1,3 +1,38 @@
-<p>
-  getsliders works!
-</p>
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+                    <div class="left-sidebar">
+						<h2>Categorias</h2>
+                        <div class="panel-group category-products" id="accordian">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><a style="cursor: pointer;" [routerLink]="['/create-slider']">Nuevo Slider </a></h4>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+				<div class="col-sm-9 padding-right">
+                    <!--features_items-->
+					<div class="features_items">
+						<h2 class="title text-center">Sliders</h2>
+                        <div *ngFor="let slider of sliders" class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+								    <div class="productinfo text-center">
+                                        <img *ngIf="slider.image != null" src="{{ url + 'slider/get-picture-slider/' + slider.image }}" width="255" height="237" />
+										<img *ngIf="slider.image == null" src="assets/images/home/product1.jpg" alt="" />
+										<h2>{{slider.title}}</h2>
+										<p>{{slider.description}}</p>
+										<a [routerLink]="['/create-slider', slider.id]" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Editar Slider</a>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+					<!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
