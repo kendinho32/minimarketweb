@@ -5,7 +5,7 @@
                     <div class="left-sidebar">
 						<h2>Categorias</h2>
                         <!--category-productsr-->
-                        <app-categorias></app-categorias>
+                        <app-categorias (emisor)="buscarProductosByCategoria($event)"></app-categorias>
                         <!--/category-products-->
 					</div>
 				</div>
