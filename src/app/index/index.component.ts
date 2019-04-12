@@ -89,7 +89,7 @@ export class IndexComponent implements OnInit {
         this.response = response;
         if (this.response.success) {
             for (let i = 0; i < this.response.data.length; i++) {
-                if (i < 2) {
+                if (i < 3) {
                     this.firstTreeRecommendedProducts.push(this.response.data[i]);
                 } else {
                     this.productosRecommended.push(this.response.data[i]);
