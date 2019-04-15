@@ -1,3 +1,34 @@
+<header>
+    <!--header-bottom-->
+		<div class="header-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a [routerLink]="['/home']" [routerLinkActive]="['active']">Home</a></li>
+								<li><a [routerLink]="['/contact']" [routerLinkActive]="['active']">Contacto</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+                            <input type="text" [(ngModel)]="busqueda" name="searchProduct" placeholder="Encuentra tu producto"/>
+						</div>
+					</div>
+				</div>
+			</div>
+    </div>
+    <!--/header-bottom-->
+</header>
 <app-slider></app-slider>
 <section>
 		<div class="container">
@@ -66,7 +97,7 @@
                         <h2 class="title text-center">Productos</h2>
                         <mat-spinner *ngIf="!productos"></mat-spinner>
 
-						<div *ngFor="let product of productos" class="col-sm-4">
+						<div *ngFor="let product of productos | search: busqueda" class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">

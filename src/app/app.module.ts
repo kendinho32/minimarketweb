@@ -25,6 +25,7 @@ import { DialogcartComponent } from './dialogcart/dialogcart.component';
 import { MiscomprasComponent } from './miscompras/miscompras.component';
 import { CreatesliderComponent } from './createslider/createslider.component';
 import { GetslidersComponent } from './getsliders/getsliders.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { GetslidersComponent } from './getsliders/getsliders.component';
     DialogcartComponent,
     MiscomprasComponent,
     CreatesliderComponent,
-    GetslidersComponent
+    GetslidersComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

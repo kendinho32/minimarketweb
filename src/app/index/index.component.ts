@@ -43,13 +43,8 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getAllProductos();
     this.busqueda = this.route.snapshot.paramMap.get('id');
-
-    if (this.busqueda != null) {
-        this.buscarProducto(this.busqueda);
-    } else {
-        this.getAllProductos();
-    }
 
     this.getAllProductosRecommended();
     $('html, body').animate({scrollTop: 0}, 'slow');
@@ -103,9 +98,9 @@ export class IndexComponent implements OnInit {
     );
   }
 
-  buscarProductosByCategoria(event) {
+  buscarProductosByCategoria(event: any) {
     this.idCategoria = event.idCategoria;
-
+    this.busqueda = null;
     if (this.idCategoria === 0) {
         this.getAllProductos();
     } else {
