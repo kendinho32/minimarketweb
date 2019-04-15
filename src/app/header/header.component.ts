@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit, DoCheck {
       }
   }
 
-  buscarProducto(event) {
+  buscarProducto(event: any) {
     if (event.key === 'Enter') {
         console.log(this.searchProduct);
         this._router.navigate(['/home', this.searchProduct]);

@@ -1047,8 +1047,6 @@ h2.title {
     background: #ccccc6;
 }
 
-.recommended_items h2 {}
-
 .our_partners {
     overflow: hidden;
 }
@@ -1421,10 +1419,6 @@ h2.title {
     overflow: hidden;
 }
 
-.login-form {}
-
-.signup-form {}
-
 .login-form h2,
 .signup-form h2 {
     color: #696763;
@@ -1475,8 +1469,6 @@ h2.title {
     font-family: 'Roboto', sans-serif;
     padding: 6px 25px;
 }
-
-.login-form label {}
 
 .login-form label input {
     border: medium none;
@@ -1719,8 +1711,6 @@ h2.title {
     margin-right: 10px
 }
 
-.user_info>li>span {}
-
 .user_info input,
 select,
 textarea {
@@ -1951,8 +1941,6 @@ textarea {
     font-weight: 500;
     margin-bottom: 17px;
 }
-
-.single-blog-post>a {}
 
 .blog-post-area .single-blog-post a img {
     border: 1px solid #F7F7F0;
