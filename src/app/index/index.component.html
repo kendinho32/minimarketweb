@@ -1,24 +1,10 @@
+<app-slider></app-slider>
 <header>
     <!--header-bottom-->
 		<div class="header-bottom">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-9">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a [routerLink]="['/home']" [routerLinkActive]="['active']">Home</a></li>
-								<li><a [routerLink]="['/contact']" [routerLinkActive]="['active']">Contacto</a></li>
-							</ul>
-						</div>
-					</div>
+					<div class="col-sm-9"></div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
                             <input type="text" [(ngModel)]="busqueda" name="searchProduct" placeholder="Encuentra tu producto"/>
@@ -29,7 +15,6 @@
     </div>
     <!--/header-bottom-->
 </header>
-<app-slider></app-slider>
 <section>
 		<div class="container">
 			<div class="row">
@@ -48,6 +33,33 @@
 				</div>
 				
 				<div class="col-sm-9 padding-right">
+                    <!--features_items-->
+					<div class="features_items">
+                        <h2 class="title text-center">Productos</h2>
+                        <mat-spinner *ngIf="!productos"></mat-spinner>
+
+						<div *ngFor="let product of productos | search: busqueda" class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+                                            <img *ngIf="product.image != null" src="{{ url + 'auth/get-picture-product/' + product.image }}" width="255" height="237" />
+											<img *ngIf="product.image == null" src="assets/images/home/FotoNoDisponible.jpg" alt="" />
+											<h2>${{product.price}}</h2>
+											<p>{{product.name}}</p>
+											<a (click)="getProductById(product.id)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
+										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>${{product.price}}</h2>
+												<p>{{product.description}}</p>
+												<a (click)="getProductById(product.id)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
+											</div>
+										</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<!--features_items-->
 					<!--recommended_items-->
 					<div class="recommended_items">
                         <h2 class="title text-center">Productos Recomendados</h2>
@@ -92,33 +104,6 @@
 						</div>
 					</div>
 					<!--/recommended_items-->
-                    <!--features_items-->
-					<div class="features_items">
-                        <h2 class="title text-center">Productos</h2>
-                        <mat-spinner *ngIf="!productos"></mat-spinner>
-
-						<div *ngFor="let product of productos | search: busqueda" class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-										<div class="productinfo text-center">
-                                            <img *ngIf="product.image != null" src="{{ url + 'auth/get-picture-product/' + product.image }}" width="255" height="237" />
-											<img *ngIf="product.image == null" src="assets/images/home/FotoNoDisponible.jpg" alt="" />
-											<h2>${{product.price}}</h2>
-											<p>{{product.name}}</p>
-											<a (click)="getProductById(product.id)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>${{product.price}}</h2>
-												<p>{{product.description}}</p>
-												<a (click)="getProductById(product.id)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carro</a>
-											</div>
-										</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--features_items-->
 				</div>
 			</div>
 		</div>
