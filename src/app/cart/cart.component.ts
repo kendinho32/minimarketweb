@@ -21,16 +21,16 @@ declare var $: any;
 export class CartComponent implements OnInit {
 
   public idProducto: any;
-  public identity;
-  public response;
+  public identity: any;
+  public response: any;
   public producto: Product;
   public arrProducts: Product[];
   public cart: Cart;
   public direccion: Direccion;
-  public url;
-
+  public url: any;
   public comunas: string[];
   public success: boolean;
+  public montoPedido: boolean;
 
   constructor(private utilService: UtilService,
              public dialog: MatDialog,
@@ -39,7 +39,8 @@ export class CartComponent implements OnInit {
     this.arrProducts = new Array<Product>();
     this.url = environment.apiBase;
     this.comunas = ['Ñuñoa', 'Santiago Centro'];
-    this.direccion = new Direccion('', '', '');
+	this.direccion = new Direccion('', '', '');
+	this.montoPedido = false;
   }
 
   ngOnInit() {
@@ -57,14 +58,14 @@ export class CartComponent implements OnInit {
     $('html, body').animate({scrollTop: 0}, 'slow');
   }
 
-  addCountProduct(index) {
+  addCountProduct(index: any) {
       this.arrProducts[index].quantitySelect = this.arrProducts[index].quantitySelect + 1;
       this.cart.total = this.cartService.totalCard(this.arrProducts);
       this.cart.products = this.arrProducts;
       localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
-  subtractCountProduct(index) {
+  subtractCountProduct(index: any) {
       this.arrProducts[index].quantitySelect = this.arrProducts[index].quantitySelect - 1;
 
       if (this.arrProducts[index].quantitySelect < 1) {
@@ -76,7 +77,7 @@ export class CartComponent implements OnInit {
       }
   }
 
-  deleteProduct(index) {
+  deleteProduct(index: any) {
       this.arrProducts.splice(index, 1);
       this.cart.total = this.cartService.totalCard(this.arrProducts);
       this.cart.products = this.arrProducts;
@@ -85,8 +86,15 @@ export class CartComponent implements OnInit {
 
   realizarPedido() {
       this.cart.direccion = this.direccion;
-      this.cart.idUsuario = this.identity.id;
-      this.openDialog();
+	  this.cart.idUsuario = this.identity.id;
+
+	  if (this.cart.total < 5000) {
+		this.montoPedido = true;
+		$('html, body').animate({scrollTop: 0}, 'slow');
+	  } else {
+		this.montoPedido = false;
+		this.openDialog();
+	  }
   }
 
   openDialog(): void {

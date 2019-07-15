@@ -8,6 +8,10 @@
             </div>
             <div *ngIf="!cart || cart.products.length === 0" class="alert alert-success col-sm-12">
                 No has agregado ningún producto a tu carrito de compras, <a [routerLink]="['/home']">ver productos</a>
+			</div>
+			
+			<div *ngIf="montoPedido" class="alert alert-info col-sm-12">
+                <strong>El pedido debe ser igual o superior a 5000 CLP</strong>
             </div>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
