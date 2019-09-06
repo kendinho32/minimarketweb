@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class UtilService {
 
- public identity;
- public card;
+ public identity: any;
+ public card: any;
 
   constructor() { }
 

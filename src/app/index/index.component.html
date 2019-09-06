@@ -1,38 +1,47 @@
 <app-slider></app-slider>
-<header>
-    <!--header-bottom-->
-		<div class="header-bottom">
+
+<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-9"></div>
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse" id="navbarButton">
+								<li class="dropdown"><a href="#x">Categorias<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a (click)="buscarProductosByCategoria(0)">TODOS</a></li>
+                                        <li *ngFor="let categoria of categorias" style="cursor: pointer;">
+                                            <a (click)="buscarProductosByCategoria(categoria.id)">{{categoria.name}}</a>
+                                        </li>
+                                    </ul>
+                                </li>
+							</ul>
+						</div>
+					</div>
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
-                            <input type="text" [(ngModel)]="busqueda" name="searchProduct" placeholder="Encuentra tu producto"/>
+                            <input type="text" class="form-control" [(ngModel)]="busqueda" name="searchProduct" placeholder="Encuentra tu producto"/>
 						</div>
 					</div>
 				</div>
 			</div>
-    </div>
-    <!--/header-bottom-->
-</header>
+		</div><!--/header-bottom-->
+
 <section>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Categorias</h2>
-                        <!--category-productsr-->
-                        <app-categorias (emisor)="buscarProductosByCategoria($event)"></app-categorias>
-                        <!--/category-products-->
-						<!--shipping-->
-						<div class="shipping text-center">
-							<img src="assets/images/home/banner.png" alt="" />
-						</div>
-                        <!--/shipping-->
-					</div>
-				</div>
-				
-				<div class="col-sm-9 padding-right">
+
+        
+			
+
+				<div class="col-sm-12 padding-right">
                     <!--features_items-->
 					<div class="features_items">
                         <h2 class="title text-center">Productos</h2>

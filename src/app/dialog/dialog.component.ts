@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Contact } from '../models/contact';
 import { ContactService } from '../services/contact.service';
@@ -35,7 +36,8 @@ export class DialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogComponent>,
             private contactService: ContactService,
             private loginService: LoginService,
-            private productService: ProductoService,
+			private productService: ProductoService,
+			private _router: Router,
             @Inject(MAT_DIALOG_DATA) public data: any) {
     this.componente = data.componente;
     this.boton = false;
@@ -67,7 +69,7 @@ export class DialogComponent implements OnInit {
     }
 
     if (this.componente === 'registerCart') {
-        this.texto = 'Producto agregado exitosamente al carrito de compras...!';
+        this.texto = 'Producto agregado exitosamente...!, puedes modificar la cantidad en el carrito de compras';
         this.boton = true;
         this.addProduct = true;
     }
@@ -75,6 +77,10 @@ export class DialogComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  irCarro(){
+	this._router.navigate(['/cart']);
   }
 
   sendFormContact() {
